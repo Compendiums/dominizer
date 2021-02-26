@@ -1,0 +1,44 @@
+accomplished:
+    forms both trains using full hand and trains using hand after removing domoinoes matching the starting double
+    will not add duplicate trains to final train results
+    will not play double if there is no follow-up dominoe
+    prob can get rid of handsize in f()
+    clean up variable names
+    do a list of dicts, not a dict of dicts
+    functionize output
+
+todo:
+    form into a class and combine recursion and output (watch for global variable naming)
+    remove perfect trains from multi and full train output
+    input improvement/cleansing
+        if number is not a number <= 12 its no good
+    add multithreading and caching
+
+----------------------------
+pass in handsize, fullTrain, multiTrain
+
+iterate through full and multiStarts
+    if len(train) = handsize add to perfect train
+
+if len(perfectTrain) > 0:
+    Congratulations, you have a perfect train! You win!
+    traintotal
+    train
+
+otherwise do [playing with strategy? try these:][going for broke? try these:]
+    trainRank, if 1 then output best
+    output traintotal
+    output train
+
+----------------------------
+no match
+match without double
+match with double
+match with double without follow up
+
+if len match == 1 and match is a double
+    insert 0
+if len match > 1 and match is a double
+    normal iteration
+if match is not a double
+    normal iteration
