@@ -6,12 +6,18 @@ accomplished:
     clean up variable names
     do a list of dicts, not a dict of dicts
     functionize output
+    form into a class and combine recursion
+    remove perfect trains from multi and full train output
+    create config
+    accept arguements (one being test mode)
 
 todo:
-    form into a class and combine recursion and output (watch for global variable naming)
-    remove perfect trains from multi and full train output
+    create tests for all scenarios
+    add logging
+    add error handling
+    standardize quotes
     input improvement/cleansing
-        if number is not a number <= 12 its no good
+        partially complete, just need to cleanse the dominoes
     add multithreading and caching
 
 ----------------------------

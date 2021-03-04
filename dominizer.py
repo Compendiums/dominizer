@@ -4,16 +4,16 @@ class dominizer:
 
         matches = [d for d in dominoes if comparer in d]
 
-        print('RECURSION')
-        print('comparer')
-        print(comparer)
-        print('dominoes')
-        print(dominoes)
-        print('matches:')
-        print(matches)
-        print('match len')
-        print(len(matches))
-        print('')
+        # print('RECURSION')
+        # print('comparer')
+        # print(comparer)
+        # print('dominoes')
+        # print(dominoes)
+        # print('matches:')
+        # print(matches)
+        # print('match len')
+        # print(len(matches))
+        # print('')
 
         subtrains = []
 
@@ -26,16 +26,16 @@ class dominizer:
 
         else:
             for match in matches:
-                newDominoes = [d for d in dominoes if d != match]
+                new_dominoes = [d for d in dominoes if d != match]
 
                 if match[0] == match[1]:
-                    newComparer = match[0]
+                    new_comparer = match[0]
                 else:
                     #logic removes comparer from set so pop() has to remove the non-comparer number
                     #it then returns the random value it removed (not random b/c only non-comparer is left)
-                    newComparer = (set(match) - {comparer}).pop()
+                    new_comparer = (set(match) - {comparer}).pop()
 
-                subresults = trainRecursion(newComparer, newDominoes)
+                subresults = self.train_recursion(new_comparer, new_dominoes, hand_size)
 
                 for subresult in subresults:
                     new_train = [match] + subresult["train"]
@@ -73,15 +73,15 @@ class dominizer:
         print("")
 
         #perfect train specific output
-        if len(perfect_trains) == 1:
-            print("You have a perfect train! You win!!!\n")
-            train_breakdown(perfect_trains)
-
-        elif len(perfect_trains) > 1:
-            print("WHOA. You have multiple perfect trains! You must be cheating...\n")
-            train_breakdown(perfect_trains)
-
         if perfect_trains:
+            if len(perfect_trains) == 1:
+                print("You have a perfect train! You win!!!\n")
+
+            elif len(perfect_trains) > 1:
+                print("WHOA. You have multiple perfect trains! You must be cheating...\n")
+
+            self.train_breakdown(perfect_trains)
+
             print("--------------------------------------------------\n")
 
         # standard output
@@ -92,15 +92,15 @@ class dominizer:
         # matches in both (if multi_trains is populated so will be full_trains)
         elif multi_trains:
             print("Playing with strategy? Try these:\n")
-            train_breakdown(multi_trains)
+            self.train_breakdown(multi_trains)
 
             print("Going for broke? Try these:\n")
-            train_breakdown(full_trains)
+            self.train_breakdown(full_trains)
 
         # multi is empty but full is not
         else:
             print("Here are your options:\n")
-            train_breakdown(full_trains)
+            self.train_breakdown(full_trains)
 
     
     def train_breakdown(self, input_trains):
