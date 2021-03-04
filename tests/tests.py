@@ -1,135 +1,83 @@
-import os
+from dominizer import dominizer
 
-# list1 = [1,2,3,4]
+def test_selector(mode):
 
-# list2 = list1
+    try:
+        # class instantiation
+        dom = dominizer()
 
-# list2.append(5)
+        #set variables
+        if mode == 1 or mode == 4:
+            # basic test
+            if mode == 1:
+                print('beginning basic test')
+            elif mode == 4:
+                print('beginning component test: dominizer.train_recursion()')
 
-# print("list1")
-# print(list1)
-# print("list2")
-# print(list2)
+            double = 1
+            hand_size = 5
+            dominoes = [[1, 3], [2, 3], [5, 3], [4, 2], [2,2]]
 
-# del list1[0]
-# print(list1)
-# print(list1[0])
+        elif mode == 2:
+            # full hand/ multi start test
+            print('beginning full hand/multi start test')
+            double = 3
+            hand_size = 15
+            # these are not the inputs from the picture, correct
+            dominoes = [[6,2], [6,4], [6,5], [6,12], [9,2], [9,0], [3,4], [4,11], [2,0], [10,5], [7,3], [0,8], [1,8], [11,8], [11,12]]
 
-# dict1 = {13: {20: [[1, 4], [4, 2], [2, 3], [1, 3]]}, 14: {12: [[5, 3], [1, 3]]}, 21: {20: [[1, 3], [2, 3], [4, 2], [1, 4]]}, 22: {24: [[5, 3], [2, 3], [4, 2], [1, 4]]}}
+        elif mode == 3:
+            # perfect train test
+            print('beginning perfect train test')
+            print('test doesnt exist yet')
+            return
+        
+        elif mode == 5:
+            # output test
+            print('beginning output test')
+            full_trains = []
+            multi_trains = []
 
-# for traindata in dict1.values():
-#     for key in traindata.keys():
-#         print(sorted(traindata[key]))
-
-# list3 = [1,2,3,4]
-# list4 = [4,3,2,1]
-
-# if sorted(list3) == sorted(list4):
-#     print(1)
-# else:
-#     print(0)
-
-# if len(match) == 0:
-#     subtrain.update({0 : {0 : []}}) 
-# elif len(match) == 1 and match[0][0] == match[0][1]:
-#     print("in single double match")
-#     subtrain.update({0 : {0 : []}})
-# else:
-#     for w in match:
-#         newDomoinoes = [d for d in dominoes if d != w]
-#         subresult = f((set(w) - {comparer}).pop(), handSize, newDomoinoes)
-#         for x in subresult.values():
-#             for y,z in x.items():
-#                 subtrain.update({keyList[0]:{sum(w) + y : z + [w]}})
-#                 del keyList[0]
-
-# match = [w for w in range(10)]
-# print(match)
-# print(w)
-
-# def trainOutput(handSize, fullTrains, multiTrains):
-#     perfectTrains = []
-
-#     # only fullTrains could possibly have a perfect train
-#     # multiTrains by nature will remove one or more dominoes
-#     for fullTrain in fullTrains:
-#         if handSize == len(list(fullTrain.values())[0]):
-#             perfectTrains += [fullTrain]
-    
-#     #used later, clearing for safety
-#     fullTrain = None
-
-#     print("")
-
-#     #perfect train specific output
-#     if len(perfectTrains) == 1:
-#         print("You have a perfect train! You win!!!\n")
-#         trainBreakdown(perfectTrains)
-    
-#     elif len(perfectTrains) > 1:
-#         print("WHOA. You have multiple perfect trains! You must be cheating...\n")
-#         trainBreakdown(perfectTrains)
-    
-#     if perfectTrains:
-#         print("--------------------------------------------------\n")
-    
-#     # standard output
-#     # no matches at all (if fullTrains is empty so will be multiTrains)
-#     if not fullTrains:
-#         print("You've got nothing - you're drawing this round buddy.")
-    
-#     # matches in both (if multiTrains is populated so will be fullTrains)
-#     elif multiTrains:
-#         print("Playing with strategy? Try these:\n")
-#         trainBreakdown(multiTrains)
-
-#         print("Going for broke? Try these:\n")
-#         trainBreakdown(fullTrains)
-
-#     # multi is empty but full is not
-#     else:
-#         print("Here are your options:\n")
-#         trainBreakdown(fullTrains)
-
-# def trainBreakdown(inputTrains):
-#     counter = 0
-#     trainScores = []
-
-#     # get unique train scores for sorted output
-#     for inputTrain in inputTrains:
-#         inputScore = list(inputTrain.keys())[0]
-#         if inputScore not in trainScores:
-#             trainScores.append(list(inputTrain.keys())[0])
-
-#     # loop through sorted scores, if they match, output all the trains matched 
-#         # if there is a score tie, output order is random
-#     for score in sorted(trainScores, reverse=True):
-#         for inputTrain in inputTrains:
-#             if score in inputTrain:
-#                 counter += 1
-#                 if counter == 1:
-#                     strCount = "  Best Train:"
-#                 else:
-#                     strCount = "  Train " + str(counter) + ":"
-
-#                 trainScore = list(inputTrain.keys())[0]
-#                 train = str(inputTrain[trainScore])
-
-#                 print(strCount)
-#                 print(f"    Score: {trainScore}")
-#                 print("    Train:")
-#                 print(f"    {train}")
-#                 print("")
+        else:
+            # forced failure
+            print('no existing test specified')
+            return
 
 
-# _fullTrains = [{15: [[1, 3], [2, 3], [4, 2]]}, {19: [[1, 3], [2, 3], [2, 2], [4, 2]]}, {12: [[1, 3], [5, 3]]}, {7: [[1, 6]]}]
-# _multiTrains = [{15: [[1, 3], [2, 3], [4, 2]]}, {19: [[1, 3], [2, 3], [2, 2], [4, 2]]}, {12: [[1, 3], [5, 3]]}, {7: [[1, 6]]}]
-# _handSize = 5
+        # run test
+        if mode in range(1,4):
 
-# # _fullTrains = [{28: [[4, 2],[4,8],[2,8]]},{28: [[2,8],[4,8],[4,2]]}]
-# # _multiTrains = [{28: [[4, 2],[4,8],[2,8]]},{28: [[2,8],[4,8],[4,2]]}]
-# # _handSize = 3
+            full_trains = dom.train_recursion(double, dominoes, hand_size)
 
-# trainOutput(_handSize,_fullTrains,_multiTrains)
+            multi_trains = []
+            multi_starts = [d for d in dominoes if double in d]
+            print("multi_starts")
+            print(multi_starts)
 
-print(os.path.dirname(os.path.abspath(__file__)))
+            if len(multi_starts) > 1:
+                for starter in multi_starts:
+                    remaining_dominoes = [d for d in dominoes if d not in multi_starts]
+                    remaining_dominoes.append(starter)
+                    sub_multi_train = dom.train_recursion(double, remaining_dominoes, hand_size)
+                    multi_trains += sub_multi_train
+
+            # print("full_trains")
+            # print(full_trains)
+            # print("multi_trains")
+            # print(multi_trains)
+
+            dom.train_output(full_trains, multi_trains)
+        
+        elif mode == 4:
+
+            full_trains = dom.train_recursion(double, dominoes, hand_size)
+            
+            print('full_trains')
+            print(full_trains)
+
+        elif mode == 5:
+            dom.train_output(full_trains, multi_trains)
+
+
+    except Exception as e:
+        raise

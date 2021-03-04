@@ -47,89 +47,89 @@ import os
 # print(match)
 # print(w)
 
-# def trainOutput(handSize, fullTrains, multiTrains):
-#     perfectTrains = []
+def trainOutput(handSize, fullTrains, multiTrains):
+    perfectTrains = []
 
-#     # only fullTrains could possibly have a perfect train
-#     # multiTrains by nature will remove one or more dominoes
-#     for fullTrain in fullTrains:
-#         if handSize == len(list(fullTrain.values())[0]):
-#             perfectTrains += [fullTrain]
+    # only fullTrains could possibly have a perfect train
+    # multiTrains by nature will remove one or more dominoes
+    for fullTrain in fullTrains:
+        if handSize == len(list(fullTrain.values())[0]):
+            perfectTrains += [fullTrain]
     
-#     #used later, clearing for safety
-#     fullTrain = None
+    #used later, clearing for safety
+    fullTrain = None
 
-#     print("")
+    print("")
 
-#     #perfect train specific output
-#     if len(perfectTrains) == 1:
-#         print("You have a perfect train! You win!!!\n")
-#         trainBreakdown(perfectTrains)
+    #perfect train specific output
+    if len(perfectTrains) == 1:
+        print("You have a perfect train! You win!!!\n")
+        trainBreakdown(perfectTrains)
     
-#     elif len(perfectTrains) > 1:
-#         print("WHOA. You have multiple perfect trains! You must be cheating...\n")
-#         trainBreakdown(perfectTrains)
+    elif len(perfectTrains) > 1:
+        print("WHOA. You have multiple perfect trains! You must be cheating...\n")
+        trainBreakdown(perfectTrains)
     
-#     if perfectTrains:
-#         print("--------------------------------------------------\n")
+    if perfectTrains:
+        print("--------------------------------------------------\n")
     
-#     # standard output
-#     # no matches at all (if fullTrains is empty so will be multiTrains)
-#     if not fullTrains:
-#         print("You've got nothing - you're drawing this round buddy.")
+    # standard output
+    # no matches at all (if fullTrains is empty so will be multiTrains)
+    if not fullTrains:
+        print("You've got nothing - you're drawing this round buddy.")
     
-#     # matches in both (if multiTrains is populated so will be fullTrains)
-#     elif multiTrains:
-#         print("Playing with strategy? Try these:\n")
-#         trainBreakdown(multiTrains)
+    # matches in both (if multiTrains is populated so will be fullTrains)
+    elif multiTrains:
+        print("Playing with strategy? Try these:\n")
+        trainBreakdown(multiTrains)
 
-#         print("Going for broke? Try these:\n")
-#         trainBreakdown(fullTrains)
+        print("Going for broke? Try these:\n")
+        trainBreakdown(fullTrains)
 
-#     # multi is empty but full is not
-#     else:
-#         print("Here are your options:\n")
-#         trainBreakdown(fullTrains)
+    # multi is empty but full is not
+    else:
+        print("Here are your options:\n")
+        trainBreakdown(fullTrains)
 
-# def trainBreakdown(inputTrains):
-#     counter = 0
-#     trainScores = []
+def trainBreakdown(inputTrains):
+    counter = 0
+    trainScores = []
 
-#     # get unique train scores for sorted output
-#     for inputTrain in inputTrains:
-#         inputScore = list(inputTrain.keys())[0]
-#         if inputScore not in trainScores:
-#             trainScores.append(list(inputTrain.keys())[0])
+    # get unique train scores for sorted output
+    for inputTrain in inputTrains:
+        inputScore = list(inputTrain.keys())[0]
+        if inputScore not in trainScores:
+            trainScores.append(list(inputTrain.keys())[0])
 
-#     # loop through sorted scores, if they match, output all the trains matched 
-#         # if there is a score tie, output order is random
-#     for score in sorted(trainScores, reverse=True):
-#         for inputTrain in inputTrains:
-#             if score in inputTrain:
-#                 counter += 1
-#                 if counter == 1:
-#                     strCount = "  Best Train:"
-#                 else:
-#                     strCount = "  Train " + str(counter) + ":"
+    # loop through sorted scores, if they match, output all the trains matched 
+        # if there is a score tie, output order is random
+    for score in sorted(trainScores, reverse=True):
+        for inputTrain in inputTrains:
+            if score in inputTrain:
+                counter += 1
+                if counter == 1:
+                    strCount = "  Best Train:"
+                else:
+                    strCount = "  Train " + str(counter) + ":"
 
-#                 trainScore = list(inputTrain.keys())[0]
-#                 train = str(inputTrain[trainScore])
+                trainScore = list(inputTrain.keys())[0]
+                train = str(inputTrain[trainScore])
 
-#                 print(strCount)
-#                 print(f"    Score: {trainScore}")
-#                 print("    Train:")
-#                 print(f"    {train}")
-#                 print("")
+                print(strCount)
+                print(f"    Score: {trainScore}")
+                print("    Train:")
+                print(f"    {train}")
+                print("")
 
 
-# _fullTrains = [{15: [[1, 3], [2, 3], [4, 2]]}, {19: [[1, 3], [2, 3], [2, 2], [4, 2]]}, {12: [[1, 3], [5, 3]]}, {7: [[1, 6]]}]
-# _multiTrains = [{15: [[1, 3], [2, 3], [4, 2]]}, {19: [[1, 3], [2, 3], [2, 2], [4, 2]]}, {12: [[1, 3], [5, 3]]}, {7: [[1, 6]]}]
-# _handSize = 5
+_fullTrains = [{15: [[1, 3], [2, 3], [4, 2]]}, {19: [[1, 3], [2, 3], [2, 2], [4, 2]]}, {12: [[1, 3], [5, 3]]}, {7: [[1, 6]]}]
+_multiTrains = [{15: [[1, 3], [2, 3], [4, 2]]}, {19: [[1, 3], [2, 3], [2, 2], [4, 2]]}, {12: [[1, 3], [5, 3]]}, {7: [[1, 6]]}]
+_handSize = 5
 
-# # _fullTrains = [{28: [[4, 2],[4,8],[2,8]]},{28: [[2,8],[4,8],[4,2]]}]
-# # _multiTrains = [{28: [[4, 2],[4,8],[2,8]]},{28: [[2,8],[4,8],[4,2]]}]
-# # _handSize = 3
+# _fullTrains = [{28: [[4, 2],[4,8],[2,8]]},{28: [[2,8],[4,8],[4,2]]}]
+# _multiTrains = [{28: [[4, 2],[4,8],[2,8]]},{28: [[2,8],[4,8],[4,2]]}]
+# _handSize = 3
 
-# trainOutput(_handSize,_fullTrains,_multiTrains)
+trainOutput(_handSize,_fullTrains,_multiTrains)
 
-print(os.path.dirname(os.path.abspath(__file__)))
+# print(os.path.dirname(os.path.abspath(__file__)))
