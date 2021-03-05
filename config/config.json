@@ -1,4 +1,32 @@
 {
-    "log_dir" : "logs",
-    "tests_dir" : "tests"
+    "log_dir" : "../logs",
+    "tests_dir" : "tests",
+    "log_config" : {
+        "version": 1,
+        "formatters" : {
+            "standard" : {
+                "format" : "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
+            }
+        },
+        "handlers" : {
+            "file" : {
+                "level" : "INFO",
+                "formatter" : "standard",
+                "class" : "logging.FileHandler",
+                "filename" : "./logs/log_needs_date.log"
+            },
+            "console" : {
+                "level" : "INFO",
+                "formatter" : "standard",
+                "class" : "logging.StreamHandler"
+            }
+        },
+        "loggers" : {
+            "first_log" : {
+                "handlers" : ["file","console"],
+                "level" : "INFO",
+                "propagate" : "False"
+            }
+        }
+    }
 }
