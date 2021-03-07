@@ -1,5 +1,5 @@
 {
-    "log_dir" : "../logs",
+    "log_dir" : "logs",
     "tests_dir" : "tests",
     "log_config" : {
         "version": 1,
@@ -13,7 +13,7 @@
                 "level" : "INFO",
                 "formatter" : "standard",
                 "class" : "logging.FileHandler",
-                "filename" : "./logs/log_needs_date.log"
+                "filename" : "set_in_script"
             },
             "console" : {
                 "level" : "INFO",

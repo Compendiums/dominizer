@@ -1,6 +1,9 @@
 import argparse
 import json
+import logging
 import os
+
+from datetime import datetime
 
 from dominizer import dominizer
 from tests import tests
@@ -103,12 +106,22 @@ def main():
 
 if __name__ == '__main__':
     
+    start_time = datetime.now()
+    timestamp = start_time.strftime("%y-%m-%d_%H:%M:%S")
+    
     with open(os.path.join(DIR,'config\config.json')) as f:
         config = json.load(f)
 
     log_dir = os.path.join(DIR, config['log_dir'])
     if not os.path.isdir(log_dir):
         os.mkdir(log_dir)
+
+    #set log filename
+    config['log_config']['handlers']['file']['filename'] = f'log_{timestamp}.log'
+    logging.config.dictConfig(config['log_config'])
+
+    logger = logging.getLogger("first_log")
+    logger.info("testing")
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--test_mode', type=int, required=False, default=0, help="run app with fixed inputs in test mode")
