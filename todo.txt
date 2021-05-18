@@ -8,16 +8,16 @@ accomplished:
     functionize output
     form into a class and combine recursion
     remove perfect trains from multi and full train output
-    create config
-    accept arguements (one being test mode)
-
-todo:
-    create tests for all scenarios
+    create config - not currently used
+    accept arguements (one being test mode) - removed b/c not needed
     add logging
     add error handling
-    standardize quotes
     input improvement/cleansing
-        partially complete, just need to cleanse the dominoes
+
+todo:
+    find a way to host
+    create tests for all scenarios
+    standardize quotes
     add multithreading and caching
 
 ----------------------------

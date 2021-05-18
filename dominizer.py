@@ -1,22 +1,22 @@
+from log_setup import logger
+
 class dominizer:
 
     def train_recursion(self, comparer, dominoes, hand_size):
 
+        # logger.info("comparer: " + comparer)
+        # logger.info("hand_size: " + hand_size)
+        # logger.info("dominoes:")
+        # logger.info(dominoes)
+        
         matches = [d for d in dominoes if comparer in d]
 
-        # print('RECURSION')
-        # print('comparer')
-        # print(comparer)
-        # print('dominoes')
-        # print(dominoes)
-        # print('matches:')
-        # print(matches)
-        # print('match len')
-        # print(len(matches))
-        # print('')
+        # logger.info("matches:")
+        # logger.info(matches)
 
         subtrains = []
 
+        # logic for no matches or only matched to doubles (cannot play doubles without follow up dominoe)
         if (len(matches) == 0) or (len(matches) == 1 and matches[0][0] == matches[0][1]):
             subtrains += [{
                 "total" : 0, 
